@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="firstName" type="id">strings</item>
+    <item name="lastName" type="id">strings</item>
+    <item name="Email" type="id">strings</item>
+    <item name="Password" type="id">strings</item>
+    <item name="registration_date" type="id">strings</item>
+    <item name="istweeted" type="id">strings</item>
+    <item name="tweet" type="id">strings</item>
+    <item name="tweet_reportButton" type="id">strings</item>
+    <item name="fragmentContainer" type="id">strings</item>
+</resources>

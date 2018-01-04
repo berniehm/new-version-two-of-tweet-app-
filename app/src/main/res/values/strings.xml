@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">MyTwitter </string>
+    <string name="signupEmail">Email</string>
+    <string name="signupPassword">Password</string>
+    <string name="signupRegister">Register</string>
+    <string name="signupFirstName">Firstname</string>
+    <string name="signupSubtitle">Signup</string>
+    <string name="signupLastName">Lastname</string>
+    <string name="signupTitle">Twitter</string>
+    <string name="tweet_report_subject">strings</string>
+    <string name="tweet_report_prospective_tweeter">strings</string>
+    <string name="tweet_report_nobody_interested">strings</string>
+    <string name="tweet_report_not_tweeted">strings</string>
+    <string name="tweet_report_tweeted">strings</string>
+    <string name="welcomeSignup">Signup</string>
+    <string name="welcomeLogin">Login</string>
+    <string name="istweeted">tweeted</string>
+    <string name="tweet">tweet</string>
+    <string name="tweet_report">report</string>
+    <string name="message_hint">message</string>
+    <string name="status">status</string>
+    <string name="location">location</string>
+    <string name="loginSignIn">login</string>
+    <string name="loginPassword">Password</string>
+    <string name="loginEmail">Email</string>
+    <string name="loginSubtitle">login</string>
+    <string name="loginTitle">Twitter</string>
+</resources>
