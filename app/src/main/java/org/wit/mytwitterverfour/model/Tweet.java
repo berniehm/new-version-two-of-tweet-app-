@@ -13,6 +13,7 @@ import olympus.mount.test.R;
 
 /**
  * Created by berni on 1/2/2018.
+ * This holds the contnts of a tweet : and the tweeter 
  */
 
 public class Tweet {
