@@ -13,30 +13,35 @@ import olympus.mount.test.R;
 
 /**
  * Created by berni on 1/2/2018.
- * This holds the contnts of a tweet : and the tweeter 
+ * This holds the contents of a tweet and the tweeter
+ * done with guidance from:
+ * https://wit-ictskills-2017.github.io/mobile-app-dev/topic02-b/book-a-donation-03/index.html#/Donation-03
  */
 
 public class Tweet {
     public Long id;
     public Long date;
-
-
+       public String tweets;
+    public int amount;
     public String message;
     public boolean tweeted;
     public String  tweeter;
-
+    public String method;
     //JSON names for instance fields
     private static final String JSON_ID = "id";
     private static final String JSON_MESSAGE = "message";
     private static final String JSON_DATE = "date";
     private static final String JSON_TWEETED = "tweeted";
     private static final String JSON_TWEETER  = "tweeter";
-
-    public Tweet() {
+    private static final String editableText = null;
+    public Tweet(String tweetedAmount, String method) {
         id = unsignedLong();
         date = new Date().getTime();
         message = "";
         tweeter = ": none presently";
+        this.amount = amount;
+        this.method = this.method;
+      
     }
 
     //Constructor for loading JSON objects
@@ -46,6 +51,10 @@ public class Tweet {
         date = json.getLong(JSON_DATE);
         tweeted = json.getBoolean(JSON_TWEETED);
         tweeter = json.getString(JSON_TWEETER);
+    }
+
+    public static String getEditableText() {
+        return editableText;
     }
 
     /**

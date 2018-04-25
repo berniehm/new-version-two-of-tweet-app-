@@ -1,13 +1,16 @@
 package org.wit.mytwitterverfour.helpers;
 
-import java.io.Serializable;
-/**
- * Created by berni on 12/27/2017.
- */
-
 import android.app.Activity;
 import android.content.Intent;
 import android.provider.ContactsContract;
+
+import java.io.Serializable;
+
+/**
+ * Created by berni on 12/27/2017.
+ * helpers class
+ * https://wit-ictskills-2017.github.io/mobile-app-dev/topic03-b/book-a-myrent-02%20(Listview)/index.html#/06
+ */
 
 public class IntentHelper
 {

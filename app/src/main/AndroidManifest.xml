@@ -30,11 +30,7 @@
             android:name="org.wit.mytwitterverfour.activties.TweetActivity"
             android:label="@string/app_name">
         </activity>
-        <activity
-            android:name="org.wit.mytwitterverfour.activties.TweetListActivity"
-            android:label="@string/app_name">
 
-        </activity>
     </application>
 
 </manifest>

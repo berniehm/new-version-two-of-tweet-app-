@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <!-- LOCATION SEPARATOR -->
+
     <TextView
         android:id="@+id/locationLabel"
         android:layout_width="match_parent"
@@ -55,7 +55,7 @@
         android:layout_marginRight="16dp"
         android:text="@string/tweet"/>
 
-    <Button android:id="@+id/tweet_reportButton"
+    <Button android:id="@+id/tweet_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"

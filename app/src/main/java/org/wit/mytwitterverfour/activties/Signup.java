@@ -17,6 +17,8 @@ import olympus.mount.test.R;
 
 /**
  * Created by berni on 12/30/2017.
+ * This class allow the user to register
+ * Sign up done with guidance from :https://wit-ictskills-2017.github.io/mobile-app-dev/topic02-b/book-a-donation-03/index.html#/Donation-03
  */
 
 

@@ -6,19 +6,15 @@ package org.wit.mytwitterverfour.main;
 
 
 import android.app.Application;
+import android.util.Log;
+import android.widget.Toast;
 
 import org.wit.mytwitterverfour.model.Portfolio;
-import org.wit.mytwitterverfour.model.PortfolioSerializer;
+import org.wit.mytwitterverfour.model.Tweet;
 import org.wit.mytwitterverfour.model.User;
-
-
-import android.app.Application;
-
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.wit.mytwitterverfour.helpers.LogHelpers.info;
 
 
 /**
@@ -28,40 +24,58 @@ import static org.wit.mytwitterverfour.helpers.LogHelpers.info;
  * also an array list of users
  */
 
-public class MyTweetApp extends Application {
-    protected static MyTweetApp app;
-    private static final String FILENAME = "portfolio.json";
+public class MyTweetApp extends Application{
 
-    public   Portfolio portfolio;
-    public List<User> users = new ArrayList<User>();
-    private User user;
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        PortfolioSerializer serializer = new PortfolioSerializer(this, FILENAME);
-        portfolio = new Portfolio(serializer);
-        app = this;
-        info(this, "MyTweet app launched");
-    }
+    private static MyTweetApp app;
+    public final int target = 10000;
+    public int totalTweeted = 0;
+    public List<Tweet> tweets = new ArrayList<Tweet>();
+    public List<User>     users     = new ArrayList<User>();
+    public Portfolio portfolio;
 
     public static MyTweetApp getApp() {
         return app;
     }
 
-    public void newUser(User user) {
-        this.user = user;
-        users.add(user);
+    public boolean newDonation(Tweet tweet) {
+        boolean targetAchieved = totalTweeted > target;
 
+        if(!targetAchieved) {
+            tweets.add(tweet);
+            totalTweeted += tweet.amount;
+        }
+        else {
+            Toast toast = Toast.makeText(this, "Target Exceeded!", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+        return targetAchieved;
     }
 
-    public boolean validUser(String email, String password) {
-        for (User user : users) {
-            if (user.email.equals(email) && user.password.equals(password)) {
+
+    @Override
+    public void onCreate()
+    {
+        super.onCreate();
+        Log.v("Tweet","Tweet App Started");
+    }
+
+    public void newUser(User user)
+    {
+        users.add(user);
+    }
+
+    public boolean validUser (String email, String password)
+    {
+        for (User user : users)
+        {
+            if (user.email.equals(email) && user.password.equals(password))
+            {
                 return true;
             }
         }
         return false;
     }
 
+    public void newTweet(Tweet tweet) {
+    }
 }

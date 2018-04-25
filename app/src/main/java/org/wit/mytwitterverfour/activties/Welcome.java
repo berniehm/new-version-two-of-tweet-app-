@@ -9,6 +9,7 @@ import olympus.mount.test.R;
 
 /**
  * Created by berni on 1/2/2018.
+ * https://wit-ictskills-2017.github.io/mobile-app-dev/topic02-b/book-a-donation-03/index.html#/Donation-03
  */
 
 public class Welcome extends AppCompatActivity {

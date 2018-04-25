@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 /**
  * Created by berni on 1/2/2018.
+ * This class stores Json and aids Persitance
  */
 public class PortfolioSerializer
 {

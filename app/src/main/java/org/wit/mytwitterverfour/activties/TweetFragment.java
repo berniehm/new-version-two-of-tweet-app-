@@ -2,22 +2,33 @@ package org.wit.mytwitterverfour.activties;
 
 /**
  * Created by berni on 12/28/2017.
+ * /**
+ * Tweet Fragment took guidance from
+ * https://wit-ictskills-2017.github.io/mobile-app-dev/topic05-b/book-a-myrent-07%20(Fragments)/index.html#/04
  */
+
+import android.app.DatePickerDialog.OnDateSetListener;
+import android.support.v4.app.Fragment;
 
 
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
+
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,15 +43,18 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 
 
+
 import org.wit.mytwitterverfour.main.MyTweetApp;
 import org.wit.mytwitterverfour.model.Portfolio;
 import org.wit.mytwitterverfour.model.Tweet;
 
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
 import olympus.mount.test.R;
+
 
 import static org.wit.mytwitterverfour.helpers.ContactHelper.getContact;
 import static org.wit.mytwitterverfour.helpers.ContactHelper.getEmail;
@@ -50,7 +64,7 @@ import static org.wit.mytwitterverfour.helpers.ContactHelper.sendEmail;
 public class TweetFragment extends Fragment implements TextWatcher,
         OnCheckedChangeListener,
         OnClickListener,
-        DatePickerDialog.OnDateSetListener
+        OnDateSetListener
 {
     public static   final String  EXTRA_TWEET_ID = "myTweet.TWEET_ID";
     private static  final int     REQUEST_CONTACT = 1;
@@ -60,6 +74,7 @@ public class TweetFragment extends Fragment implements TextWatcher,
     private Button   dateButton;
     private Button   tweeterButton;
     private Button   reportButton;
+    private  String lettercount;
 
     private Tweet tweet;
     private Portfolio portfolio;
@@ -72,6 +87,7 @@ public class TweetFragment extends Fragment implements TextWatcher,
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
+
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
 
@@ -89,13 +105,33 @@ public class TweetFragment extends Fragment implements TextWatcher,
         View v = inflater.inflate(R.layout.fragment_tweet, parent, false);
 
         TweetActivity tweetActivity = (TweetActivity)getActivity();
-        tweetActivity.actionBar.setDisplayHomeAsUpEnabled(true);
+
 
         addListeners(v);
         updateControls(tweet);
 
         return v;
     }
+
+    private String getAddressFromLocation( Location location ) {
+        Geocoder geocoder = new Geocoder( getActivity() );
+
+        String strAddress = "";
+        Address address;
+        try {
+            address = geocoder
+                    .getFromLocation( location.getLatitude(), location.getLongitude(), 1 )
+                    .get( 0 );
+            strAddress = address.getAddressLine(0) +
+                    " " + address.getAddressLine(1) +
+                    " " + address.getAddressLine(2);
+        }
+        catch (IOException e ) {
+        }
+
+        return strAddress;
+    }
+
 
     private void addListeners(View v)
     {
@@ -144,6 +180,8 @@ public class TweetFragment extends Fragment implements TextWatcher,
         portfolio.saveTweets();
     }
 
+    /**https://wit-ictskills-2017.github.io/mobile-app-dev/topic05-a/book-b-permissions/index.html#/01
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
@@ -228,12 +266,43 @@ public class TweetFragment extends Fragment implements TextWatcher,
         }
     }
 
+    public interface OnFragmentInteractionListener
+    {
+        // TODO: Update argument type and name
+        void onFragmentInteraction(Uri uri);
+    }
+
+
+
     private void readContact() {
         String name = getContact(getActivity(), data);
         emailAddress = getEmail(getActivity(), data);
         tweet.tweeter = name;
         tweeterButton.setText("Tweeter: "+tweet.tweeter);
     }
+
+
+
+/**public void tweetPressed(View view) {
+
+    if (lettercount = "";
+    (message.getText().toString(), message.getText().toString())){
+    startActivity (new Intent(this, TweetFragment.class));
+}
+else
+    {
+        Toast toast = Toast.makeText(this, "Invalid Credentials", Toast.LENGTH_SHORT);
+        toast.show();
+
+}*/
+
+
+
+
+
+
+
+
 
     //https://developer.android.com/training/permissions/requesting.html
     @Override

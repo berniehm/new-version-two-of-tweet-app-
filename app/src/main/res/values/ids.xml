@@ -9,4 +9,30 @@
     <item name="tweet" type="id">strings</item>
     <item name="tweet_reportButton" type="id">strings</item>
     <item name="fragmentContainer" type="id">strings</item>
+    <item name="tweet_list_item_dateTextView" type="id">strings</item>
+    <item name="tweet_list_item_istweeted" type="id">strings</item>
+    <item name="message_tweeted" type="id">strings</item>
+    <item name="menu_item_new_tweet" type="id">strings</item>
+    <item name="tweets_list_item_message" type="id">strings</item>
+    <item name="tweets_list_item_dateTextView" type="id">strings</item>
+    <item name="tweetMethod" type="id">tweet</item>
+    <item name="progressBar" type="id">tweet</item>
+    <item name="tweetButton" type="id">button</item>
+    <item name="amountText" type="id">amount</item>
+    <item name="amountTotal" type="id">total</item>
+    <item name="amountPicker" type="id">picker</item>
+    <item name="menuReport" type="id">menureport</item>
+    <item name="menuSettings" type="id">settings</item>
+    <item name="menuLogout" type="id">logout</item>
+    <item name="twitter" type="id">twitter</item>
+    <item name="reportList" type="id">reportlist</item>
+    <item name="row_amount" type="id">row_amount</item>
+    <item name="row_method" type="id">row_method</item>
+    <item name="facebook" type="id">facebook</item>
+    <item name="paymentMethod" type="id">tweetmethod</item>
+    <item name="Text" type="id">text</item>
+    <item name="total" type="id">total</item>
+    <item name ="tweet_message" type="id">message</item>
+
+
 </resources>

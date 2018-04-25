@@ -25,4 +25,7 @@
     <string name="loginEmail">Email</string>
     <string name="loginSubtitle">login</string>
     <string name="loginTitle">Twitter</string>
+    <string name="new_tweet">strings</string>
+    <string name="settings">strings</string>
+    <string name="reportTitle">report</string>
 </resources>

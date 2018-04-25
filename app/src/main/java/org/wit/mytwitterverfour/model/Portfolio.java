@@ -9,6 +9,8 @@ import static org.wit.mytwitterverfour.helpers.LogHelpers.info;
 
 /**
  * Created by berni on 1/2/2018.
+ * This stores the array List of tweets
+ * https://wit-ictskills-2017.github.io/mobile-app-dev/topic03-b/book-a-myrent-02%20(Listview)/index.html#/06
  */
 
 
@@ -31,9 +33,7 @@ public class Portfolio
         }
     }
 
-    public void addTweet(Tweet tweet) {
-        tweets.add(tweet);
-    }
+
 
     public Tweet getTweet(Long id) {
         Log.i(this.getClass().getSimpleName(), "Long parameter id: " + id);
