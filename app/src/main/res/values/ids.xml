@@ -33,6 +33,7 @@
     <item name="Text" type="id">text</item>
     <item name="total" type="id">total</item>
     <item name ="tweet_message" type="id">message</item>
+    <item name="make_tweet" type="id">tweet</item>
 
 
 </resources>
