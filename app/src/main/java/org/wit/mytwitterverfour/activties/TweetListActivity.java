@@ -22,6 +22,7 @@ import olympus.mount.test.R;
 
 /**
  * Created by berni on 12/22/2017.
+ * edited h july 2018
  */
 
 public class TweetListActivity extends Activity implements AdapterView.OnItemClickListener {
