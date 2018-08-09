@@ -1,7 +1,7 @@
 package org.wit.mytwitterverfour.activties;
 
-import android.app.ActionBar;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -58,22 +58,24 @@ public class TweetActivity extends AppCompatActivity  {
 
 
         email.setOnClickListener(new View.OnClickListener() {
-                                     @Override
-                                     public void onClick(View v) {
-                                         {
-                                             ActionBar.Tab tweet_message;
-                                             tweet = (EditText) findViewById(R.id.message);
-                                             String text = tweet.getText().toString();
-
-                                             if (text.length() > 0) {
-                                                 Tweet tweet = new Tweet(text, date.getText().toString());
-
-                                             }
 
 
-                                             Toast.makeText(getApplicationContext(), "This is my Toast message!",
-                                                     Toast.LENGTH_LONG).show();
+            @Override
+            public void onClick(View v) {
+                ActionBar.Tab tweet_message;
+                tweet = (EditText) findViewById(R.id.message);
+                String text = tweet.getText().toString();
 
-                                         }
+                if (text.length() > 0) {
+                   // Tweet tweet = new Tweet(text, date.getText().toString());
+                    Toast.makeText(getApplicationContext(), text,
+                            Toast.LENGTH_LONG).show();
+                }
+            }
+        });
 
-                                     }
+}}
+
+
+
+
