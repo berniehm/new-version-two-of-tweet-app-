@@ -63,4 +63,11 @@
         android:text="@string/tweet_report"
         />
 
+
+    <ListView
+        android:id="@+id/tweetList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
+
 </LinearLayout>

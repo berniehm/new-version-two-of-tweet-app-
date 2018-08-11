@@ -4,8 +4,10 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,6 +16,7 @@ import org.wit.mytwitterverfour.model.Tweet;
 import org.wit.mytwitterverfour.model.User;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import olympus.mount.test.R;
@@ -44,7 +47,8 @@ public class TweetActivity extends AppCompatActivity  {
     private MyTweetApp app;
     private String    emailAddress = "";
     private String    emailRetweet = "";
-
+private ArrayList<String >arrayList;
+private ArrayAdapter<String>adapter;
 
 
     @Override
@@ -52,11 +56,15 @@ public class TweetActivity extends AppCompatActivity  {
         app = (MyTweetApp) getApplication();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_tweet);
-//        getSupportActionBar() public void setDisplayHomeAsUpEnabled setDisplayHomeAsUpEnabled(true);
-
+        ListView listView = (ListView)findViewById(R.id.tweetList);
+        String items = ("Apple,Banana,Grape");
+        arrayList = new ArrayList<>(Arrays.asList(items));
+        adapter = new ArrayAdapter<String>(this, R.layout.activity_tweet_list, R.id.txtitem,arrayList);
+        listView.setAdapter(adapter);
+        final EditText message = (EditText) findViewById(R.id.message);
         email = (Button) findViewById(R.id.tweet);
 
-
+       ;
         email.setOnClickListener(new View.OnClickListener() {
 
 
@@ -65,6 +73,9 @@ public class TweetActivity extends AppCompatActivity  {
                 ActionBar.Tab tweet_message;
                 tweet = (EditText) findViewById(R.id.message);
                 String text = tweet.getText().toString();
+                String newItem = message.getText().toString();
+                arrayList.add(newItem);
+                adapter.notifyDataSetChanged();
 
                 if (text.length() > 0) {
                    // Tweet tweet = new Tweet(text, date.getText().toString());
