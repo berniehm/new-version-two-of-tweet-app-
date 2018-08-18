@@ -25,6 +25,7 @@
     <item name="menuSettings" type="id">settings</item>
     <item name="menuLogout" type="id">logout</item>
     <item name="twitter" type="id">twitter</item>
+    <item name = "tweetList" type = "id">tweet</item>
     <item name="reportList" type="id">reportlist</item>
     <item name="row_amount" type="id">row_amount</item>
     <item name="row_method" type="id">row_method</item>

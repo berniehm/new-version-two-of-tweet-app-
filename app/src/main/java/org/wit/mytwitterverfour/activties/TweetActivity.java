@@ -60,7 +60,7 @@ private ArrayAdapter<String>adapter;
         ListView listView = (ListView)findViewById(R.id.tweetList);
         String items = ("Apple,Banana,Grape");
         arrayList = new ArrayList<>(Arrays.asList(items));
-        adapter = new ArrayAdapter<String>(this, R.layout.activity_tweet_list, R.id.txtitem,arrayList);
+        adapter = new ArrayAdapter<String>(this, R.layout.activity_tweet_list, R.id.tweetList,arrayList);
         listView.setAdapter(adapter);
         final EditText message = (EditText) findViewById(R.id.message);
         email = (Button) findViewById(R.id.tweet);
@@ -82,11 +82,14 @@ private ArrayAdapter<String>adapter;
                 String newItem = message.getText().toString();
                 arrayList.add(newItem);
                 adapter.notifyDataSetChanged();
+                //create a new array item String<> = new
+
+                //
 
                  startActivity (new Intent(TweetActivity.this, TweetListActivity.class));
 
                 if (text.length() > 0) {
-                   // Tweet tweet = new Tweet(text, date.getText().toString());
+                   // add data array ;
                     Toast.makeText(getApplicationContext(), text,
                             Toast.LENGTH_LONG).show();
 
