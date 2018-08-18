@@ -1,5 +1,6 @@
 package org.wit.mytwitterverfour.activties;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -65,7 +66,12 @@ private ArrayAdapter<String>adapter;
         email = (Button) findViewById(R.id.tweet);
 
        ;
-        email.setOnClickListener(new View.OnClickListener() {
+        email.setOnClickListener(new View.OnClickListener()
+        {
+
+
+
+
 
 
             @Override
@@ -77,12 +83,17 @@ private ArrayAdapter<String>adapter;
                 arrayList.add(newItem);
                 adapter.notifyDataSetChanged();
 
+                 startActivity (new Intent(TweetActivity.this, TweetListActivity.class));
+
                 if (text.length() > 0) {
                    // Tweet tweet = new Tweet(text, date.getText().toString());
                     Toast.makeText(getApplicationContext(), text,
                             Toast.LENGTH_LONG).show();
-                }
-            }
+
+                }else { Toast.makeText(getApplicationContext(), "nothing tweeted",
+                        Toast.LENGTH_LONG).show();
+
+            }}
         });
 
 }}

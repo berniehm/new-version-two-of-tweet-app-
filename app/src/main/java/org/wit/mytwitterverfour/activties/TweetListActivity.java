@@ -1,21 +1,13 @@
 package org.wit.mytwitterverfour.activties;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import org.wit.mytwitterverfour.main.MyTweetApp;
 import org.wit.mytwitterverfour.model.Portfolio;
-import org.wit.mytwitterverfour.model.Tweet;
-
-import java.util.ArrayList;
 
 import olympus.mount.test.R;
 
@@ -29,7 +21,7 @@ public class TweetListActivity extends Activity implements AdapterView.OnItemCli
 
     private ListView listView;
     private Portfolio portfolio;
-    private TweetAdapter adapter;
+    //private TweetAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,11 +32,11 @@ public class TweetListActivity extends Activity implements AdapterView.OnItemCli
         listView = (ListView) findViewById(R.id.tweetList);
 
         MyTweetApp app = (MyTweetApp) getApplication();
-        portfolio = app.portfolio;
+       // portfolio = app.portfolio;
 
 
-        adapter = new TweetAdapter(this, portfolio.tweets);
-        listView.setAdapter(adapter);
+//        adapter = new TweetAdapter(this, portfolio.tweets);
+       // listView.setAdapter(adapter);
 
     }
 
@@ -53,21 +45,22 @@ public class TweetListActivity extends Activity implements AdapterView.OnItemCli
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         //Tweet tweet = adapter.getItem(position);
-        Intent intent = new Intent(this, TweetActivity.class);
+        //Intent intent = new Intent(this, TweetActivity.class);
         //intent.putExtra("Tweet_ID", tweet.id);
-        startActivity(intent);
+        //startActivity(intent);
 
     }
     @Override
     public void onResume()
     {
         super.onResume();
-        adapter.notifyDataSetChanged();
+//        adapter.notifyDataSetChanged();
     }
 }
 
 
-class TweetAdapter extends ArrayAdapter<Tweet>
+
+/**class TweetAdapter extends ArrayAdapter<Tweet>
 {
     private Context context;
 
@@ -99,6 +92,5 @@ class TweetAdapter extends ArrayAdapter<Tweet>
 
 
 
-        return convertView;
-    }
-}
+        return convertView;**/
+
