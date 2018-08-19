@@ -40,7 +40,7 @@ public class TweetListActivity extends Activity implements AdapterView.OnItemCli
 
         MyTweetApp app = (MyTweetApp) getApplication();
        // portfolio = app.portfolio;
-
+// item = new list coming from the variable in the adapter
 
        // TweetAdapter adapter = new TweetAdapter(this, portfolio.tweets);
         String[]items = {"apple", "pear"};

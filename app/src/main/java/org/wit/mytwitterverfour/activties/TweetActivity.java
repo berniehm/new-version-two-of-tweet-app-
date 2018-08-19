@@ -66,7 +66,10 @@ private ArrayAdapter<String>adapter;
         email = (Button) findViewById(R.id.tweet);
 
        ;
+        int[] myTweets;
         email.setOnClickListener(new View.OnClickListener()
+                //myTweets[0]=text;
+
         {
 
 
@@ -83,13 +86,13 @@ private ArrayAdapter<String>adapter;
                 arrayList.add(newItem);
                 adapter.notifyDataSetChanged();
                 //create a new array item String<> = new
+              // String[5] = new myTweets;
 
-                //
 
                  startActivity (new Intent(TweetActivity.this, TweetListActivity.class));
 
                 if (text.length() > 0) {
-                   // add data array ;
+                   // add data array set the value of text item in arraylist;
                     Toast.makeText(getApplicationContext(), text,
                             Toast.LENGTH_LONG).show();
 
