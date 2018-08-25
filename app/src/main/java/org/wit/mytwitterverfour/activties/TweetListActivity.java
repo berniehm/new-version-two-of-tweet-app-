@@ -30,6 +30,7 @@ public class TweetListActivity extends Activity implements AdapterView.OnItemCli
     private Portfolio portfolio;
     //private TweetAdapter adapter;
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,12 +42,14 @@ public class TweetListActivity extends Activity implements AdapterView.OnItemCli
         MyTweetApp app = (MyTweetApp) getApplication();
        // portfolio = app.portfolio;
 // item = new list coming from the variable in the adapter
-
-       // TweetAdapter adapter = new TweetAdapter(this, portfolio.tweets);
-        String[]items = {"apple", "pear"};
+        String s= getIntent().getStringExtra("myTweets");
+        // TweetAdapter adapter = new TweetAdapter(this, portfolio.tweets);
+        String[]items = { "orange"};
         ArrayAdapter<String>Tweetg= new ArrayAdapter<String>(this,R.layout.tweetitem,items );
        listView.setAdapter(Tweetg);
-
+        String newTweetMessage = getIntent().getStringExtra("TweetString");
+        String newTweetMessge;
+        String[] allTweets = {"orange", "blueberry", "strawberry", };
     }
 
 

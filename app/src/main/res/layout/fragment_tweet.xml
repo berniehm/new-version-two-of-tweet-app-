@@ -23,6 +23,8 @@
         <requestFocus/>
     </EditText>
 
+
+
     <!-- STATUS SEPARATOR-->
     <TextView
         android:id="@+id/statusLabel"

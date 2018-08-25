@@ -18,6 +18,7 @@ import org.wit.mytwitterverfour.model.User;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import olympus.mount.test.R;
@@ -42,6 +43,7 @@ public class TweetActivity extends AppCompatActivity  {
     private EditText tweet;
     public List <Tweet> tweets    = new ArrayList<Tweet>();
     public List<User> users    = new ArrayList<User>();
+      public List text;
 
     private static final int REQUEST_CONTACT = 1;
     private Button   sendTweet;
@@ -50,6 +52,9 @@ public class TweetActivity extends AppCompatActivity  {
     private String    emailRetweet = "";
 private ArrayList<String >arrayList;
 private ArrayAdapter<String>adapter;
+
+    public TweetActivity() {
+    }
 
 
     @Override
@@ -64,18 +69,22 @@ private ArrayAdapter<String>adapter;
         listView.setAdapter(adapter);
         final EditText message = (EditText) findViewById(R.id.message);
         email = (Button) findViewById(R.id.tweet);
+//get the tweet message
+        tweet = (EditText) findViewById(R.id.message);
+        text  = Collections.singletonList(tweet.getText().toString());
+
 
        ;
-        int[] myTweets;
+        final String[] myTweets;
         email.setOnClickListener(new View.OnClickListener()
-                //myTweets[0]=text;
-
-        {
 
 
 
 
 
+
+
+            {
 
             @Override
             public void onClick(View v) {
@@ -86,10 +95,17 @@ private ArrayAdapter<String>adapter;
                 arrayList.add(newItem);
                 adapter.notifyDataSetChanged();
                 //create a new array item String<> = new
-              // String[5] = new myTweets;
+                String[] myTweets = new String[5];
 
 
-                 startActivity (new Intent(TweetActivity.this, TweetListActivity.class));
+
+
+
+
+                Intent myintent = new Intent(TweetActivity.this, TweetListActivity.class).putExtra("TweetString", text);
+                startActivity(myintent);
+
+
 
                 if (text.length() > 0) {
                    // add data array set the value of text item in arraylist;
