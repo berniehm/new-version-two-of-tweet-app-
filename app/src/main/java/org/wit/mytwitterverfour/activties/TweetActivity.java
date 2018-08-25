@@ -1,6 +1,5 @@
 package org.wit.mytwitterverfour.activties;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -102,8 +101,8 @@ private ArrayAdapter<String>adapter;
 
 
 
-                Intent myintent = new Intent(TweetActivity.this, TweetListActivity.class).putExtra("TweetString", text);
-                startActivity(myintent);
+             /**   Intent myintent = new Intent(TweetActivity.this, TweetListActivity.class).putExtra("TweetString", text);
+                startActivity(myintent);**/
 
 
 

@@ -5,12 +5,6 @@
     android:orientation="vertical">
 
 
-    <TextView
-        android:id="@+id/locationLabel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/location"
-        style="?android:listSeparatorTextViewStyle"/>
 
     <!--message to tweet -->
     <EditText
@@ -26,28 +20,9 @@
 
 
     <!-- STATUS SEPARATOR-->
-    <TextView
-        android:id="@+id/statusLabel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/status"
-        style="?android:listSeparatorTextViewStyle"/>
 
-    <Button
-        android:id="@+id/registration_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"/>
 
-    <CheckBox
-        android:id="@+id/istweeted"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/istweeted"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:checked="false"/>
+
 
     <Button
         android:id="@+id/tweet"
@@ -57,13 +32,7 @@
         android:layout_marginRight="16dp"
         android:text="@string/tweet"/>
 
-    <Button android:id="@+id/tweet_message"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:text="@string/tweet_report"
-        />
+
 
 
     <ListView
