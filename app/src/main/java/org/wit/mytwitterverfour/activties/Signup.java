@@ -7,6 +7,7 @@ package org.wit.mytwitterverfour.activties;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
@@ -43,7 +44,9 @@ public class Signup extends AppCompatActivity {
     public void signupPressed(View view) {
 
         //setup sharedPreferences to save local data
-        SharedPreferences.Editor editor = getSharedPreferences("users", MODE_PRIVATE).edit();
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = preferences.edit();
+       // SharedPreferences.Editor editor = getSharedPreferences("users", MODE_PRIVATE).edit();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("user");
         TextView firstName = (TextView)  findViewById(R.id.firstName);

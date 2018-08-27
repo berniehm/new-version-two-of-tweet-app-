@@ -38,38 +38,39 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
     }
     public void loginPressed (View view)
-    {
+    {startActivity (new Intent(getApplicationContext(), TweetActivity.class));
        final MyTweetApp app = (MyTweetApp) getApplication();
 
         final TextView email     = (TextView)  findViewById(R.id.Email);
         final TextView password  = (TextView)  findViewById(R.id.Password);
-        SharedPreferences prefs = getSharedPreferences("users", MODE_PRIVATE);
-        String UserID = prefs.getString((String) email.getText(), null);
-       if (UserID != null) {
+        //SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+       SharedPreferences prefs = getSharedPreferences("users", MODE_PRIVATE);
+       // String UserID = prefs.getString( email.getText().toString(), null);
+      // if (UserID != null) {
+          String name = prefs.getString(email.getText().toString(), "No name defined");
 
 
 
         DatabaseReference readDatabase = FirebaseDatabase.getInstance().getReference();
         DatabaseReference readmyRef = readDatabase.child("users");
 
-        readmyRef.child(UserID).addListenerForSingleValueEvent(new ValueEventListener() {
+        readmyRef.child(name);
+        readmyRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
-                Toast.makeText(getApplicationContext(),user.password,Toast.LENGTH_LONG).show();
-                if(password.getText().toString().equals(user.password))
-                {
-                    startActivity (new Intent(getApplicationContext(), TweetActivity.class));
-                }
-                else
-                {
+                Toast.makeText(getApplicationContext(), user.password, Toast.LENGTH_LONG).show();
+                if (password.getText().toString().equals(user.password)) {
+                    startActivity(new Intent(getApplicationContext(), TweetActivity.class));
+                } else {
                     Toast toast = Toast.makeText(getApplicationContext(), "Invalid Credentials", Toast.LENGTH_SHORT);
                     toast.show();
                 }
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {}
+            public void onCancelled(DatabaseError databaseError) {
+            }
 
         });
 
@@ -78,4 +79,4 @@ public class Login extends AppCompatActivity {
 
 
     }
-}
+

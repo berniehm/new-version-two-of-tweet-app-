@@ -11,6 +11,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import org.wit.mytwitterverfour.main.MyTweetApp;
 import org.wit.mytwitterverfour.model.Tweet;
 import org.wit.mytwitterverfour.model.User;
@@ -95,7 +98,11 @@ private ArrayAdapter<String>adapter;
                 adapter.notifyDataSetChanged();
                 //create a new array item String<> = new
                 String[] myTweets = new String[5];
-
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference myRef = database.getReference("tweets");
+                final String uuid = java.util.UUID.randomUUID().toString().replace("-", "");
+              //  myRef.setValue(text);
+                myRef.child(uuid).setValue(text);
 
 
 
