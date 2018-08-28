@@ -283,18 +283,18 @@ public class TweetFragment extends Fragment implements TextWatcher,
 
 
 
-/**public void tweetPressed(View view) {
+    /**public void tweetPressed(View view) {
 
-    if (lettercount = "";
-    (message.getText().toString(), message.getText().toString())){
-    startActivity (new Intent(this, TweetFragment.class));
-}
-else
-    {
-        Toast toast = Toast.makeText(this, "Invalid Credentials", Toast.LENGTH_SHORT);
-        toast.show();
+     if (lettercount = "";
+     (message.getText().toString(), message.getText().toString())){
+     startActivity (new Intent(this, TweetFragment.class));
+     }
+     else
+     {
+     Toast toast = Toast.makeText(this, "Invalid Credentials", Toast.LENGTH_SHORT);
+     toast.show();
 
-}*/
+     }*/
 
 
 

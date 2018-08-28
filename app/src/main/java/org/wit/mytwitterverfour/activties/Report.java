@@ -52,4 +52,3 @@ public class Report extends AppCompatActivity {
         return true;
     }
 }
-

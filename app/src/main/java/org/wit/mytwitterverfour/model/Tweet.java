@@ -21,7 +21,7 @@ import olympus.mount.test.R;
 public class Tweet {
     public Long id;
     public Long date;
-       public String tweets;
+    public String tweets;
     public int amount;
     public String message;
     public boolean tweeted;
@@ -34,14 +34,21 @@ public class Tweet {
     private static final String JSON_TWEETED = "tweeted";
     private static final String JSON_TWEETER  = "tweeter";
     private static final String editableText = null;
-    public Tweet(String tweetedAmount, String method) {
+
+    public Tweet()
+    {
+        id = unsignedLong();
+        date = new Date().getTime();
+    }
+
+    public Tweet(int tweetedAmount, String method) {
         id = unsignedLong();
         date = new Date().getTime();
         message = "";
         tweeter = ": none presently";
-        this.amount = amount;
-        this.method = this.method;
-      
+        this.amount = tweetedAmount;
+        this.method = method;
+
     }
 
     //Constructor for loading JSON objects
@@ -70,7 +77,7 @@ public class Tweet {
         return rndVal;
     }
 
-    public void setMessage(String meggage) {
+    public void setMessage(String message) {
         this.message = message;
     }
 
@@ -81,6 +88,13 @@ public class Tweet {
     public String getDateString() {
         return "Registered:" + dateString();
     }
+
+    public void setTweeter(String twter) { this.tweeter = twter; }
+
+    public String getTweeter() { return this.tweeter; }
+
+    public void setAmount(int amt) { this.amount = amt; }
+    public int getAmount() { return this.amount; }
 
     private String dateString() {
         String dateFormat = "EEE d MMM yyyy H:mm";

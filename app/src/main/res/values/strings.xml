@@ -28,5 +28,8 @@
     <string name="new_tweet">strings</string>
     <string name="settings">strings</string>
     <string name="reportTitle">report</string>
-    <string name ="removetweet">delete</string>
+    <string name="userFirebaseNode">user</string>
+    <string name="tweetsFirebaseNode">tweets</string>
+    <string name="sessionUsername">sessionUsername</string>
+    <string name="sessionDisplayName">sessionDisplayName</string>
 </resources>
