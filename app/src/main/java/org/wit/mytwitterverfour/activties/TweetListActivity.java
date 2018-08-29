@@ -1,4 +1,3 @@
-
 package org.wit.mytwitterverfour.activties;
 
 import android.app.Activity;
