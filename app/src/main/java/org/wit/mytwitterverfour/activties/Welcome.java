@@ -25,7 +25,7 @@ public class Welcome extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("message");
 
-        myRef.setValue("Hello, World!");
+        myRef.setValue("Hello, Preply!");
     }
 
     public void signupPressed(View view) {

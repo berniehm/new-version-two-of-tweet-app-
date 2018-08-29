@@ -1,23 +1,35 @@
+
+
+
+
+
 package org.wit.mytwitterverfour.activties;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ArrayAdapter;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
 import org.wit.mytwitterverfour.main.MyTweetApp;
 import org.wit.mytwitterverfour.model.Tweet;
 import org.wit.mytwitterverfour.model.User;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import olympus.mount.test.R;
@@ -37,20 +49,20 @@ public class TweetActivity extends AppCompatActivity  {
 
     private TextView tweetBody;
     private TextView date;
-    private Button email;
+    private Button tweetButton;
     private Button selectContact;
     private EditText tweet;
-    public List <Tweet> tweets    = new ArrayList<Tweet>();
+    ArrayList<Tweet> tweets = new ArrayList<Tweet>();
     public List<User> users    = new ArrayList<User>();
-      public List text;
+    public List text;
 
     private static final int REQUEST_CONTACT = 1;
     private Button   sendTweet;
     private MyTweetApp app;
     private String    emailAddress = "";
     private String    emailRetweet = "";
-private ArrayList<String >arrayList;
-private ArrayAdapter<String>adapter;
+    private ArrayList<String >arrayList;
+    final private CustomAdapter adapter = new CustomAdapter();
 
     public TweetActivity() {
     }
@@ -58,67 +70,170 @@ private ArrayAdapter<String>adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        app = (MyTweetApp) getApplication();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_tweet);
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference(getString(R.string.tweetsFirebaseNode));
+
+        //setup firebase data listener for new tweets
+        ///add an event listener to the query so we can get the result of it.
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            //this method will run when the data is changed. Since we used query.addListenerForSingleValueEvent, it will only be run once.
+            //if we used query.addListenerForValueEvent, this method would run when we attach and run again anytime the data is changed (see firebase documentation).
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //deserialize data from firebase into class objects
+                tweets = new ArrayList<Tweet>(); //clear array to save new tweets
+                for(DataSnapshot ds : dataSnapshot.getChildren())
+                {
+                    Tweet thisTweet = ds.getValue(Tweet.class);
+                    tweets.add(thisTweet);
+                }
+
+                //refresh tweet list
+                adapter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {}
+
+        });
+
         ListView listView = (ListView)findViewById(R.id.tweetList);
-        String items = ("Apple,Banana,Grape");
-        arrayList = new ArrayList<>(Arrays.asList(items));
-        adapter = new ArrayAdapter<String>(this, R.layout.activity_tweet_list, R.id.tweetList,arrayList);
         listView.setAdapter(adapter);
-        final EditText message = (EditText) findViewById(R.id.message);
-        email = (Button) findViewById(R.id.tweet);
-//get the tweet message
-        tweet = (EditText) findViewById(R.id.message);
-        text  = Collections.singletonList(tweet.getText().toString());
 
+        //get tweet button from view
+        tweetButton = (Button) findViewById(R.id.tweet);
 
-       ;
-        final String[] myTweets;
-        email.setOnClickListener(new View.OnClickListener()
+        tweetButton.setOnClickListener(new View.OnClickListener()
 
 
 
-
-
-
-
-            {
+        {
 
             @Override
             public void onClick(View v) {
-                ActionBar.Tab tweet_message;
                 tweet = (EditText) findViewById(R.id.message);
                 String text = tweet.getText().toString();
-                String newItem = message.getText().toString();
-                arrayList.add(newItem);
-                adapter.notifyDataSetChanged();
-                //create a new array item String<> = new
-                String[] myTweets = new String[5];
-
-
-
-
-
-
-             /**   Intent myintent = new Intent(TweetActivity.this, TweetListActivity.class).putExtra("TweetString", text);
-                startActivity(myintent);**/
-
-
 
                 if (text.length() > 0) {
-                   // add data array set the value of text item in arraylist;
-                    Toast.makeText(getApplicationContext(), text,
+                    Tweet newTweet = new Tweet();
+                    newTweet.setMessage(text); //set the tweet message
+                    newTweet.setAmount(text.length()); //set the amount of characters
+
+                    //get the logged in user name or id. if the values dont exist in the session it will be null
+                    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                    String tweeter = prefs.getString(getString(R.string.sessionDisplayName),null);
+                    newTweet.setTweeter(tweeter);
+
+                    tweets.add(newTweet);
+
+                    //get firebase database instance and tweet node reference
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    DatabaseReference myRef = database.getReference(getString(R.string.tweetsFirebaseNode));
+
+                    myRef.push().setValue(newTweet); //save tweet to firebase
+
+                    tweet.setText(""); //clear the textbox when the tweet is sent
+
+                    //adapter.notifyDataSetChanged();
+
+                    Toast.makeText(getApplicationContext(), "Tweet Posted",
                             Toast.LENGTH_LONG).show();
 
-                }else { Toast.makeText(getApplicationContext(), "nothing tweeted",
+                }
+                else { Toast.makeText(getApplicationContext(), "nothing tweeted",
                         Toast.LENGTH_LONG).show();
 
-            }}
+                }}
         });
 
-}}
 
 
 
+    }
+
+    class CustomAdapter extends BaseAdapter
+    {
+
+        @Override
+        public int getCount()
+        {
+            return tweets.size();
+        }
+
+        @Override
+        public Object getItem(int i)
+        {
+            return tweets.get(i);
+        }
+
+        @Override
+        public long getItemId(int i)
+        {
+            return 0;
+        }
+
+        @Override
+        public View getView(final int i, View view, ViewGroup viewGroup)
+        {
+            view = getLayoutInflater().inflate(R.layout.tweetitem,null);
+
+
+            TextView tweet = (TextView) view.findViewById(R.id.itemName); //view for tweet
+            TextView tweeter = (TextView) view.findViewById(R.id.username); //view for tweeter
+            TextView count = (TextView) view.findViewById(R.id.charactercount); //view for character count
+
+            Button delbtn = (Button) view.findViewById(R.id.delbtn);
+            //set on click listener for the delete button
+            delbtn.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View view)
+                {
+                    Tweet tweetToDelete = tweets.get(i);
+
+                    //query firebase to find the tweet to delete by its id.
+                    Query q = FirebaseDatabase.getInstance().getReference(getString(R.string.tweetsFirebaseNode))
+                            .orderByChild("id")
+                            .equalTo(tweetToDelete.id);
+
+                    //ad an event listener to get the data
+                    q.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            //iterate over the returned data from our query and delete the tweet from firebase
+                            for (DataSnapshot ds: dataSnapshot.getChildren()) {
+                                ds.getRef().removeValue(); //actual delete
+                            }
+
+                            Toast.makeText(getApplicationContext(), "Tweet Deleted",
+                                    Toast.LENGTH_LONG).show(); //notify the user that the tweet was deleted
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            //
+                        }
+                    });
+
+                }
+            });
+
+            Tweet current = tweets.get(i);
+
+            tweet.setText(current.getMessage());
+            tweeter.setText(current.getTweeter());
+            count.setText(Integer.toString(current.getAmount()));
+
+
+            return view;
+
+        }
+    }
+
+}
 

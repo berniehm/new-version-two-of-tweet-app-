@@ -12,20 +12,14 @@ public class User {
     public String email;
     public String password;
 
+    public User() { /**we need this here for firebase **/}
+
     public User(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
     }
-
-    public User() {
-        /** this is here because firebase needs a class with out parameters\**
-         *
-         *
-         */
-    }
 }
-
 
 

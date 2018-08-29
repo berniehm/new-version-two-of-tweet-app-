@@ -5,7 +5,6 @@ package org.wit.mytwitterverfour.activties;
  */
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -14,11 +13,7 @@ import android.widget.TextView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import org.wit.mytwitterverfour.main.MyTweetApp;
 import org.wit.mytwitterverfour.model.User;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import olympus.mount.test.R;
 
@@ -42,30 +37,22 @@ public class Signup extends AppCompatActivity {
 
     public void signupPressed(View view) {
 
-        //setup sharedPreferences to save local data
-        SharedPreferences.Editor editor = getSharedPreferences("users", MODE_PRIVATE).edit();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("user");
+
+        //get values from inputs
         TextView firstName = (TextView)  findViewById(R.id.firstName);
         TextView lastName  = (TextView)  findViewById(R.id.lastName);
         TextView email     = (TextView)  findViewById(R.id.Email);
         TextView password  = (TextView)  findViewById(R.id.Password);
 
-        User user = new User (firstName.getText().toString(), lastName.getText().toString(), email.getText().toString(), password.getText().toString());
-        Map<String, User> users = new HashMap<>();
-        //param1: key, param2: value
-        final String uuid = java.util.UUID.randomUUID().toString().replace("-", "");
-//save the uuid as a key so we can lookup the user later.
-        editor.putString(user.email, uuid);
-        editor.apply();
-        //save the uuid as a key so we can lookup the user later.
+        //create user object using values
+     User user;
+        user = new User(firstName.getText().toString(), lastName.getText().toString(), email.getText().toString(), password.getText().toString());
 
-
-
-         myRef.child(uuid).setValue(user);
-
-        MyTweetApp app = (MyTweetApp) getApplication();
-        app.newUser(user);
+        //we use the push method to save data to firebase, when using push, firebase will automatically create a unique id for each entry.
+        //this is how we save new data to an existing list without overwriting data.
+        myRef.push().setValue(user);
 
         startActivity (new Intent(this, Welcome.class));
     }
