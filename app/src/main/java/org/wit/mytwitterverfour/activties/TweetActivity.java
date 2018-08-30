@@ -1,12 +1,14 @@
 
 package org.wit.mytwitterverfour.activties;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,7 +42,7 @@ import olympus.mount.test.R;
 
 
 
-public class TweetActivity extends AppCompatActivity  {
+public class TweetActivity extends AppCompatActivity {
     private int target = 240;
 
     private TextView tweetBody;
@@ -100,6 +102,26 @@ public class TweetActivity extends AppCompatActivity  {
 
         ListView listView = (ListView)findViewById(R.id.tweetList);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+Tweet selectedtweet = tweets.get(position);
+                Toast.makeText(getApplicationContext(), selectedtweet.getTweeterEmail(),
+                        Toast.LENGTH_LONG).show();
+
+                Intent intent = new Intent(getBaseContext(), Tweettimeline.class);
+                intent.putExtra("USER_EMAIL", selectedtweet.getTweeterEmail());
+                intent.putExtra("USER_Name", selectedtweet.getTweeter());
+                startActivity(intent);
+
+            }
+        });
+
+
+
+
+
 
         //get tweet button from view
         tweetButton = (Button) findViewById(R.id.tweet);
@@ -123,8 +145,10 @@ public class TweetActivity extends AppCompatActivity  {
                     //get the logged in user name or id. if the values dont exist in the session it will be null
                     SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                     String tweeter = prefs.getString(getString(R.string.sessionDisplayName),null);
+                    String tweeterEmail = prefs.getString(getString(R.string.sessionUsername),null);
                     newTweet.setTweeter(tweeter);
-
+                    //set the value as tweeter email
+                    newTweet.setTweeterEmail(tweeterEmail);
                     tweets.add(newTweet);
 
                     //get firebase database instance and tweet node reference
@@ -152,7 +176,7 @@ public class TweetActivity extends AppCompatActivity  {
 
     }
 
-    class CustomAdapter extends BaseAdapter
+     class CustomAdapter extends BaseAdapter
     {
 
         @Override

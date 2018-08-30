@@ -24,6 +24,7 @@ public class Tweet {
     public String tweets;
     public int amount;
     public String message;
+    public String tweeterEmail;
     public boolean tweeted;
     public String  tweeter;
     public String method;
@@ -76,8 +77,15 @@ public class Tweet {
         } while (rndVal <= 0);
         return rndVal;
     }
+public void setTweeterEmail(String  email) {
+    this.tweeterEmail = email;
 
-    public void setMessage(String message) {
+
+}
+public String getTweeterEmail() {
+        return tweeterEmail;}
+
+public void setMessage(String message) {
         this.message = message;
     }
 
