@@ -1,5 +1,7 @@
 package org.wit.mytwitterverfour.activties;
 
+import android.support.v7.app.AppCompatActivity;
+
 import org.wit.mytwitterverfour.model.PortfolioSerializer;
 
 /**
@@ -8,7 +10,7 @@ import org.wit.mytwitterverfour.model.PortfolioSerializer;
  * This a fragment for timeline
  */
 
-public class TimelineFragement {
+public class Timeline extends AppCompatActivity {
     public static PortfolioSerializer timeline;
 
 }
