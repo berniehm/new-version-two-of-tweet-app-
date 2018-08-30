@@ -1,8 +1,4 @@
 
-
-
-
-
 package org.wit.mytwitterverfour.activties;
 
 import android.content.SharedPreferences;
@@ -236,4 +232,8 @@ public class TweetActivity extends AppCompatActivity  {
     }
 
 }
+
+
+
+
 
