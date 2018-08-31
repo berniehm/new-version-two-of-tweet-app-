@@ -12,6 +12,4 @@ Post a tweet on their own time line
 
 View their own tweets and other users tweets
 
-Follow other users
-
 Delete tweets
